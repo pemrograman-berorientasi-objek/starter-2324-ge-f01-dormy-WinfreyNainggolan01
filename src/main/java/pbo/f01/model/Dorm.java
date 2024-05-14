@@ -1,11 +1,13 @@
 package pbo.f01.model;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +24,7 @@ public class Dorm {
     @Column(name = "resident", nullable = false)
     private int resident;
 
-    @ManyToMany(mappedBy = "dorms", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "dorms", cascade = CascadeType.ALL)
     private List<Student> students;
 
     public Dorm() {

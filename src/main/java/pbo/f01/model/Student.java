@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -29,7 +31,7 @@ public class Student {
     @Column(name = "gender", nullable = false, length = 255)
     private String gender;
 
-    @ManyToMany(targetEntity = Dorm.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Dorm.class, cascade = CascadeType.ALL)
     @JoinTable(name = "student_dorm", joinColumns = @JoinColumn(name = "dorm_nim", referencedColumnName = "nim"), 
     inverseJoinColumns = @JoinColumn(name = "dorm_name", referencedColumnName = "name"))
     private List<Dorm> dorms;
@@ -96,6 +98,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return nim + "|" + name + "|" + yearOfEnrollment;
+        return nim + "|" + name + "|" + yearOfEnrollment + "|" + gender;
     }
 }
