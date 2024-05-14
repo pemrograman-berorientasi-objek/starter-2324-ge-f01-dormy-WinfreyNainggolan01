@@ -96,6 +96,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return nim + "|" + name + "|" + yearOfEnrollment + "|" + gender;
+        return nim + "|" + name + "|" + yearOfEnrollment;
     }
 }
