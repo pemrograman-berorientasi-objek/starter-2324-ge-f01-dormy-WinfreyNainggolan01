@@ -99,7 +99,7 @@ public class App {
         entityManager.getTransaction().begin();
         Student student = entityManager.find(Student.class, data[1]);
         Dorm dorm = entityManager.find(Dorm.class, data[2]);
-        if (student != null && dorm != null && student.getGender().equals(dorm.getGender())) {
+        if (student != null && dorm != null && student.getGender().equals(dorm.getGender()) && Integer.parseInt(dorm.getCapacity()) > dorm.getResident()) {
             student.getDorms().add(dorm);
             dorm.getStudents().add(student);
             dorm.setResident(dorm.getResident() + 1);
