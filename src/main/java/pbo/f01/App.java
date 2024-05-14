@@ -24,7 +24,6 @@ public class App {
         entityManager = entityManagerFactory.createEntityManager();
 
         cleanUpTables();
-        // cleanTables();
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()){
             String input = sc.nextLine();
@@ -43,7 +42,6 @@ public class App {
                         assignStudentToDorm(data);
                         break;
                     case "display-all":
-                        // displayAllStudents();
                         displayAllDorms();
                         break;
                     default:
@@ -61,13 +59,10 @@ public class App {
         String deleteDormJpql = "DELETE FROM Dorm ";
 
         entityManager.getTransaction().begin();
-        // int deletedStudents = entityManager.createQuery(deleteStudentJpql).executeUpdate();
         entityManager.createQuery(deleteStudentJpql).executeUpdate();
-        // int deletedDorms = entityManager.createQuery(deleteDormJpql).executeUpdate();
         entityManager.createQuery(deleteDormJpql).executeUpdate();
         entityManager.getTransaction().commit();
 
-        // System.out.println("Cleaned Tables: " + deletedStudents + " students, " + deletedDorms + " dorms");
     }
 
     private static void addDorm(String[] data) {
@@ -75,7 +70,6 @@ public class App {
         Dorm dorm = new Dorm(data[1], data[2], data[3]);
         entityManager.persist(dorm);
         entityManager.getTransaction().commit();
-        // System.out.println("Dorm added: " + dorm);
     }
 
     private static void addStudent(String[] data){
@@ -90,9 +84,7 @@ public class App {
                 entityManager.persist(student);
             }
         }
-        
         entityManager.getTransaction().commit();
-        // System.out.println("Student added: " + student);
     }
 
     private static void assignStudentToDorm(String[] data) {
@@ -106,27 +98,16 @@ public class App {
             entityManager.persist(student);
             entityManager.persist(dorm);
             entityManager.getTransaction().commit();
-            // System.out.println("Assigned student " + student.getName() + " to dorm " + dorm.getName());
         } else {
-            // System.out.println("Student or Dorm not found.");
             entityManager.getTransaction().rollback();
         }
     }
 
-    // private static void displayAllStudents() {
-    //     String jpql = "SELECT c FROM Student c ORDER BY c.name";
-    //     List<Student> students = entityManager.createQuery(jpql, Student.class).getResultList();
-    //     // System.out.println("All Students:");
-    //     for (Student student : students) {
-    //         System.out.println(student);
-    //     }
-    // }
 
     private static void displayAllDorms() {
         String dormSql = "SELECT g FROM Dorm g ORDER BY g.name";
 
         List<Dorm> dorms = entityManager.createQuery(dormSql, Dorm.class).getResultList();
-        // System.out.println("All Dorms:");
         for (Dorm dorm : dorms) {
             System.out.println(dorm);
             

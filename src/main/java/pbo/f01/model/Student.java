@@ -34,9 +34,9 @@ public class Student {
     inverseJoinColumns = @JoinColumn(name = "dorm_name", referencedColumnName = "name"))
     private List<Dorm> dorms;
 
-    // No-argument constructor
+
     public Student() {
-        // Empty constructor needed by JPA
+
     }
 
     public Student(String nim, String name, String yearOfEnrollment, String gender) {
