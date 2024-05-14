@@ -99,7 +99,7 @@ public class App {
         entityManager.getTransaction().begin();
         Student student = entityManager.find(Student.class, data[1]);
         Dorm dorm = entityManager.find(Dorm.class, data[2]);
-        if (student != null && dorm != null) {
+        if (student != null && dorm != null && student.getGender().equals(dorm.getGender())) {
             student.getDorms().add(dorm);
             dorm.getStudents().add(student);
             dorm.setResident(dorm.getResident() + 1);
@@ -108,7 +108,7 @@ public class App {
             entityManager.getTransaction().commit();
             // System.out.println("Assigned student " + student.getName() + " to dorm " + dorm.getName());
         } else {
-            System.out.println("Student or Dorm not found.");
+            // System.out.println("Student or Dorm not found.");
             entityManager.getTransaction().rollback();
         }
     }
