@@ -10,8 +10,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name = "students")
 public class Student {
@@ -19,13 +17,10 @@ public class Student {
     @Id
     @Column(name = "nim", nullable = false, length = 255)
     private String nim;
-
     @Column(name = "name", nullable = false, length = 255)
     private String name;
-
     @Column(name = "year_of_enrollment", nullable = false, length = 255)
     private String yearOfEnrollment;
-
     @Column(name = "gender", nullable = false, length = 255)
     private String gender;
 
@@ -54,44 +49,46 @@ public class Student {
         this.dorms = dorms;
     }
 
+    // GETTER
     public String getNim() {
         return nim;
     }
-
-    public void setNim(String nim) {
-        this.nim = nim;
-    }
-
+    
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    
     public String getYearOfEnrollment() {
         return yearOfEnrollment;
-    }
-
-    public void setYearOfEnrollment(String yearOfEnrollment) {
-        this.yearOfEnrollment = yearOfEnrollment;
     }
 
     public String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public List<Dorm> getDorms() {
         return dorms;
     }
+    
+    // SETTER
+    public void setNim(String nim) {
+        this.nim = nim;
+    }
 
+    public void setYearOfEnrollment(String yearOfEnrollment) {
+        this.yearOfEnrollment = yearOfEnrollment;
+    }
+    
     public void setDorms(List<Dorm> dorms) {
         this.dorms = dorms;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     @Override

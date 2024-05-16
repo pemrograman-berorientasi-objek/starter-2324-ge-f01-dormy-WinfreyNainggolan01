@@ -44,6 +44,7 @@ public class Dorm {
         this.resident = students.size();
     }
 
+// GETTER
     public String getName() {
         return name;
     }
@@ -64,6 +65,7 @@ public class Dorm {
         return resident;
     }
     
+// SETTER
     public void setName(String name) {
         this.name = name;
     }
@@ -79,7 +81,6 @@ public class Dorm {
     public void setResident(int resident) {
         this.resident = resident;
     }
-
 
     public void setStudents(List<Student> students) {
         this.students = students;
