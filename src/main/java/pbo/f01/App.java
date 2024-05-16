@@ -10,7 +10,6 @@ import java.util.Scanner;
 import javax.persistence.*;
 import pbo.f01.model.Executor;
 
-
 public class App {
     private static EntityManagerFactory entityManagerFactory;
     private static EntityManager entityManager;

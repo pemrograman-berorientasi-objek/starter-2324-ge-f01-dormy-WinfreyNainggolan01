@@ -3,9 +3,7 @@ package pbo.f01.model;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import javax.persistence.*;
-
 
 public class Executor {
     private EntityManager entityManager;
@@ -14,16 +12,24 @@ public class Executor {
     }
 
     public void cleanUpTables() {
-        String sql[] = {
-            "DELETE FROM Student", 
-            "DELETE FROM Dorm"
+        String[] sql = {
+            "DELETE FROM Student",
+            "DELETE FROM Dorm "
         };
         entityManager.getTransaction().begin();
-        for(String s : sql)
-            entityManager.createNativeQuery(s).executeUpdate();
+        for(String s : sql){
+            entityManager.createQuery(s).executeUpdate();
+        }
+        entityManager.getTransaction().commit();  
+    }
+
+    public void addDorm(String[] data) {
+        entityManager.getTransaction().begin();
+        Dorm dorm = new Dorm(data[1], data[2], data[3]);
+        entityManager.persist(dorm);
         entityManager.getTransaction().commit();
     }
-    
+
     public void addStudent(String[] data){
         entityManager.getTransaction().begin();
         Student tempStudent;
@@ -36,13 +42,6 @@ public class Executor {
                 entityManager.persist(student);
             }
         }
-        entityManager.getTransaction().commit();
-    }
-
-    public void addDorm(String[] data) {
-        entityManager.getTransaction().begin();
-        Dorm dorm = new Dorm(data[1], data[2], data[3]);
-        entityManager.persist(dorm);
         entityManager.getTransaction().commit();
     }
 
@@ -69,6 +68,7 @@ public class Executor {
             System.out.println(dorm);
             List<Student> students = dorm.getStudents();
             Collections.sort(students, Comparator.comparing(Student::getName));
+
             for (Student student : students) {
                 System.out.println(student);
             }
